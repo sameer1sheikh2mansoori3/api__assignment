@@ -26,6 +26,9 @@ const Cache = model('Cache', cacheSchema);
 
 const MAX_CACHE_SIZE = 10;
 
+app.get('/health', (req, res) => {
+    res.status(200).json({ message: 'Server is running.' });
+});
 
 app.post('/cache', async (req, res) => {
     const { key, value } = req.body;
@@ -51,7 +54,7 @@ app.post('/cache', async (req, res) => {
     }
 });
 
-// GET /cache/{key} → Retrieve a value
+
 app.get('/cache/:key', async (req, res) => {
     const { key } = req.params;
 
@@ -67,7 +70,7 @@ app.get('/cache/:key', async (req, res) => {
     }
 });
 
-// DELETE /cache/{key} → Remove a key-value pair
+
 app.delete('/cache/:key', async (req, res) => {
     const { key } = req.params;
 
@@ -83,7 +86,7 @@ app.delete('/cache/:key', async (req, res) => {
     }
 });
 
-// Start the server
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
